@@ -1,0 +1,10 @@
+body{
+    background-color: aquamarine;
+}
+
+#first{
+    color: red;
+    font-style: italic;
+    font-weight: bold;
+    text-decoration: underline;
+}
