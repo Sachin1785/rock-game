@@ -1,59 +1,49 @@
-let options = ["Rock", "Paper", "Scissors"];
+const rockBtn = document.getElementById('rock');
+const paperBtn = document.getElementById('paper');
+const scissorsBtn = document.getElementById('scissors');
+const resultDiv = document.getElementById('result');
+const playerScoreSpan = document.getElementById('playerScore');
+const computerScoreSpan = document.getElementById('computerScore');
 
-t=1;
+let playerScore = 0;
+let computerScore = 0;
 
+const getComputerChoice = () => {
+  const choices = ['rock', 'paper', 'scissors'];
+  const randomIndex = Math.floor(Math.random() * 3);
+  return choices[randomIndex];
+};
 
-while(t>0)    {
-    let computer = options[Math.floor(Math.random() * options.length)].toLowerCase();
-    let player = prompt("Rock, Paper, Scissors? Type 'Exit' to quit.").toLowerCase();
-    if (player == "exit") {
-        t=0;
-        break;
-    }
-    init(computer, player);
-}
+const playRound = (playerChoice, computerChoice) => {
+  if (playerChoice === computerChoice) {
+    resultDiv.textContent = "It's a tie!";
+  } else if (
+    (playerChoice === 'rock' && computerChoice === 'scissors') ||
+    (playerChoice === 'paper' && computerChoice === 'rock') ||
+    (playerChoice === 'scissors' && computerChoice === 'paper')
+  ) {
+    resultDiv.textContent = `You win! ${playerChoice} beats ${computerChoice}`;
+    playerScore++;
+  } else {
+    resultDiv.textContent = `You lose! ${computerChoice} beats ${playerChoice}`;
+    computerScore++;
+  }
 
-function init(computer_choice, player_choice) 
-    {      
-            console.log("Computer chose: " + computer_choice);
-            console.log("Player chose: " + player_choice);
-    
-            if (player_choice == "rock") {
-                if (computer_choice == "scissors") {
-                    console.log("You Win!");
-                } else if (computer_choice == "paper") {
-                    console.log("You Lose!");
-                } else {
-                    console.log("You Tied!");
-                }
-            } else if (player_choice == "paper") {
-                if (computer_choice == "rock") {
-                    console.log("You Win!");
-                } else if (computer_choice == "scissors") {
-                    console.log("You Lose!");
-                } else {
-                    console.log("You Tied!");
-                }
-            } 
-            else if (player_choice == "scissors")
-            {
-                if (computer_choice == "paper") 
-                {
-                    console.log("You Win!");
-                } 
-                else if (computer_choice == "rock") 
-                {
-                    console.log("You Lose!");
-                } 
-                else 
-                {
-                    console.log("You Tied!");
-                }
-            } 
-            else 
-            {
-                alert("da fuck?")
-                console.log("Invalid input. Please enter Rock, Paper, Scissors, or 'Exit' to quit.");
-                i--;
-            }
-        }
+  playerScoreSpan.textContent = playerScore;
+  computerScoreSpan.textContent = computerScore;
+};
+
+rockBtn.addEventListener('click', () => {
+  const computerChoice = getComputerChoice();
+  playRound('rock', computerChoice);
+});
+
+paperBtn.addEventListener('click', () => {
+  const computerChoice = getComputerChoice();
+  playRound('paper', computerChoice);
+});
+
+scissorsBtn.addEventListener('click', () => {
+  const computerChoice = getComputerChoice();
+  playRound('scissors', computerChoice);
+});

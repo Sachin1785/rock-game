@@ -7,9 +7,18 @@
     <link href="style.css" rel="stylesheet">
 </head>
 <body>
-    <div id="container">
-        <div class="display"></div>
-        <div class="controls"></div>
+    <div class="container">
+        <h1>Rock Paper Scissors</h1>
+        <div class="choices">
+          <button id="rock">Rock</button>
+          <button id="paper">Paper</button>
+          <button id="scissors">Scissors</button>
+        </div>
+        <div id="result"></div>
+        <div id="score">
+          <p>Player: <span id="playerScore">0</span></p>
+          <p>Computer: <span id="computerScore">0</span></p>
+        </div>
     </div>
     <script defer src="script.js"></script>
 </body>
